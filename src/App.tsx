@@ -1,13 +1,11 @@
-import { Card, Section } from '~/components/';
 import { Container, Header } from '~/layouts';
+import { SortableSection } from '~/sections';
 
 export default function App() {
   return (
     <Container>
       <Header />
-      <Section heading="Sortable">
-        <Card title="Card 1" description="Description 1" />
-      </Section>
+      <SortableSection />
     </Container>
   );
 }
