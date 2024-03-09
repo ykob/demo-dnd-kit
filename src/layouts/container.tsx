@@ -7,7 +7,7 @@ export function Container({ children }: { children: React.ReactNode }) {
 const styles = {
   container: flex({
     direction: 'column',
-    gap: 8,
+    gap: 12,
     maxWidth: '1024px',
     mx: 'auto',
     px: 8,

@@ -18,9 +18,10 @@ const styles = {
   container: flex({
     direction: 'column',
     gap: 4,
+    lineHeight: 'tight',
   }),
   heading: css({
-    textStyle: '3xl',
+    textStyle: '5xl',
     fontWeight: '700',
   }),
 };
