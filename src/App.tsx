@@ -1,9 +1,10 @@
 import { Card } from '~/components/';
-import { Container } from '~/layouts';
+import { Container, Header } from '~/layouts';
 
 export default function App() {
   return (
     <Container>
+      <Header />
       <section>
         <h2>Sortable</h2>
         <div>

@@ -1,11 +1,13 @@
-import { css } from 'styled-system/css';
+import { flex } from 'styled-system/patterns';
 
 export function Container({ children }: { children: React.ReactNode }) {
   return <div className={styles.container}>{children}</div>;
 }
 
 const styles = {
-  container: css({
+  container: flex({
+    direction: 'column',
+    gap: 8,
     maxWidth: '1024px',
     mx: 'auto',
     px: 8,
