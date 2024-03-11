@@ -20,7 +20,7 @@ const styles = {
   container: flex({
     direction: 'column',
     gap: 2,
-    boxShadow: 'lg',
+    boxShadow: 'md',
     px: 8,
     pt: 6,
     pb: 8,
