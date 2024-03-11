@@ -2,7 +2,8 @@ import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { SortableContext, arrayMove } from '@dnd-kit/sortable';
 import { useState } from 'react';
 import { flex } from 'styled-system/patterns';
-import { Card, Section } from '~/components/';
+import { Section } from '~/components/';
+import { SortableCard } from './sortable-card';
 
 export function SortableSection() {
   const [items, setItems] = useState([
@@ -44,7 +45,7 @@ export function SortableSection() {
         <DndContext onDragEnd={handleDragEnd}>
           <SortableContext items={items}>
             {items.map((item) => (
-              <Card
+              <SortableCard
                 key={item.id}
                 title={item.title}
                 description={item.description}
