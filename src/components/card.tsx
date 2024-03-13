@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 import { css, cx } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
@@ -7,14 +7,19 @@ type CardProps = ComponentProps<'div'> & {
   description: string;
 };
 
-export function Card({ className, title, description, ...props }: CardProps) {
+export const Card = forwardRef(function ({
+  className,
+  title,
+  description,
+  ...props
+}: CardProps, ref) {
   return (
-    <div className={cx(styles.container, className)} {...props}>
+    <div className={cx(styles.container, className)} {...props} ref={ref}>
       <div className={styles.title}>{title}</div>
       <div className={styles.description}>{description}</div>
     </div>
   );
-}
+});
 
 const styles = {
   container: flex({
