@@ -7,7 +7,7 @@ type CardProps = ComponentProps<'div'> & {
   description: string;
 };
 
-export const Card = forwardRef(function ({
+export const Card = forwardRef<HTMLDivElement, CardProps>(function ({
   className,
   title,
   description,
