@@ -46,6 +46,7 @@ export function SortableSection() {
       coordinateGetter: sortableKeyboardCoordinates,
     }),
   );
+  const activatedItem = items.find((item) => String(item.id) === activeId);
 
   const handleDragStart = (e: DragStartEvent) => {
     const { active } = e;
@@ -87,7 +88,7 @@ export function SortableSection() {
             ))}
           </SortableContext>
           <DragOverlay>
-            {activeId ? <Card title='' description='' /> : null}
+            {activatedItem ? <Card title={activatedItem.title} description={activatedItem.description} /> : null}
           </DragOverlay>
         </DndContext>
       </div>
