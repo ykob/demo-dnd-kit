@@ -84,6 +84,7 @@ export function SortableSection() {
                 id={String(item.id)}
                 title={item.title}
                 description={item.description}
+                hidden={activeId === String(item.id)}
               />
             ))}
           </SortableContext>

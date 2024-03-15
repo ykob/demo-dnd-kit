@@ -6,6 +6,7 @@ type CardProps = ComponentProps<'div'> & {
   title: string;
   description: string;
   activated?: boolean;
+  hidden?: boolean;
 };
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(function ({
@@ -13,10 +14,11 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function ({
   title,
   description,
   activated,
+  hidden,
   ...props
 }: CardProps, ref) {
   return (
-    <div className={cx(styles.container({ activated }), className)} {...props} ref={ref}>
+    <div className={cx(styles.container({ activated, hidden }), className)} {...props} ref={ref}>
       <div className={styles.title}>{title}</div>
       <div className={styles.description}>{description}</div>
     </div>
@@ -42,6 +44,11 @@ const styles = {
           boxShadow: 'xl',
         }
       },
+      hidden: {
+        true: {
+          opacity: 0,
+        }
+      }
     },
   }),
   title: css({
