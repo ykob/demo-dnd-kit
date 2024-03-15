@@ -88,7 +88,7 @@ export function SortableSection() {
             ))}
           </SortableContext>
           <DragOverlay>
-            {activatedItem ? <Card title={activatedItem.title} description={activatedItem.description} /> : null}
+            {activatedItem ? <Card title={activatedItem.title} description={activatedItem.description} activated /> : null}
           </DragOverlay>
         </DndContext>
       </div>
