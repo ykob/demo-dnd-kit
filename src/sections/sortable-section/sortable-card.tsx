@@ -22,8 +22,8 @@ export function SortableCard({ id, ...props }: SortableCardProps) {
       ref={setNodeRef}
       style={style}
       {...attributes}
-      {...listeners}
       {...props}
+      sortListeners={listeners}
     />
   );
 }
