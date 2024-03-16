@@ -59,7 +59,9 @@ export function SortableSection() {
     if (!over) return;
     if (active.id !== over.id) {
       setItems((items) => {
-        const oldIndex = items.findIndex((item) => String(item.id) === active.id);
+        const oldIndex = items.findIndex(
+          (item) => String(item.id) === active.id,
+        );
         const newIndex = items.findIndex((item) => String(item.id) === over.id);
 
         return arrayMove(items, oldIndex, newIndex);
@@ -89,7 +91,13 @@ export function SortableSection() {
             ))}
           </SortableContext>
           <DragOverlay>
-            {activatedItem ? <Card title={activatedItem.title} description={activatedItem.description} activated /> : null}
+            {activatedItem ? (
+              <Card
+                title={activatedItem.title}
+                description={activatedItem.description}
+                activated
+              />
+            ) : null}
           </DragOverlay>
         </DndContext>
       </div>

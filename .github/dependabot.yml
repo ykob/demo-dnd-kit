@@ -26,7 +26,7 @@ updates:
           - '@typescript-eslint*'
       mdi:
         patterns:
-          - "@mdi/*"
+          - '@mdi/*'
       react:
         patterns:
           - 'react'
@@ -37,4 +37,3 @@ updates:
         patterns:
           - 'vite'
           - '@vitejs/plugin-react'
-
