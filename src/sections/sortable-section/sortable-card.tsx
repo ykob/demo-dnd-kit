@@ -5,9 +5,10 @@ import { Card } from '~/components/';
 
 type SortableCardProps = ComponentProps<typeof Card> & {
   id: string;
+  index: number;
 };
 
-export function SortableCard({ id, ...props }: SortableCardProps) {
+export function SortableCard({ id, index, ...props }: SortableCardProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
       id,
@@ -18,12 +19,15 @@ export function SortableCard({ id, ...props }: SortableCardProps) {
   };
 
   return (
-    <Card
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...props}
-      sortListeners={listeners}
-    />
+    <>
+      <Card
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...props}
+        sortListeners={listeners}
+      />
+      <input type="hidden" name="card-index" defaultValue={index} />
+    </>
   );
 }

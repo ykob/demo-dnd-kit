@@ -84,13 +84,14 @@ export function SortableSection() {
             items={itemIds}
             strategy={verticalListSortingStrategy}
           >
-            {items.map((item) => (
+            {items.map((item, index) => (
               <SortableCard
                 key={item.id}
-                id={String(item.id)}
+                id={item.id}
+                index={index}
                 title={item.title}
                 description={item.description}
-                hidden={activeId === String(item.id)}
+                hidden={activeId === item.id}
               />
             ))}
           </SortableContext>
