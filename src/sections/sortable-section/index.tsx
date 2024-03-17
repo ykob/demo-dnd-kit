@@ -16,7 +16,7 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { flex } from 'styled-system/patterns';
 import { Card, Section } from '~/components/';
 import { SortableCard } from './sortable-card';
@@ -25,21 +25,22 @@ export function SortableSection() {
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
   const [items, setItems] = useState([
     {
-      id: 1,
+      id: '1',
       title: 'Card 1',
       description: 'Description 1',
     },
     {
-      id: 2,
+      id: '2',
       title: 'Card 2',
       description: 'Description 2',
     },
     {
-      id: 3,
+      id: '3',
       title: 'Card 3',
       description: 'Description 3',
     },
   ]);
+  const itemIds = useMemo(() => items.map((item) => item.id), [items]);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -62,7 +63,7 @@ export function SortableSection() {
         const oldIndex = items.findIndex(
           (item) => String(item.id) === active.id,
         );
-        const newIndex = items.findIndex((item) => String(item.id) === over.id);
+        const newIndex = items.findIndex((item) => item.id === over.id);
 
         return arrayMove(items, oldIndex, newIndex);
       });
@@ -79,7 +80,10 @@ export function SortableSection() {
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
         >
-          <SortableContext items={items} strategy={verticalListSortingStrategy}>
+          <SortableContext
+            items={itemIds}
+            strategy={verticalListSortingStrategy}
+          >
             {items.map((item) => (
               <SortableCard
                 key={item.id}
