@@ -11,7 +11,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "preview": "vite preview",
-    "deploy": "pnpm build && gh-pages -d dist"
+    "gh-pages": "pnpm build && gh-pages -d dist"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.1.0",
