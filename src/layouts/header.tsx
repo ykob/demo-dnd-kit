@@ -1,3 +1,5 @@
+import { mdiLink } from '@mdi/js';
+import Icon from '@mdi/react';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
 
@@ -8,6 +10,7 @@ export function Header() {
       <p>
         <a href="https://dndkit.com/" target="_blank">
           https://dndkit.com/
+          <Icon path={mdiLink} />
         </a>
       </p>
     </header>
