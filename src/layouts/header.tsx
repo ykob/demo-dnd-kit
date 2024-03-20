@@ -1,4 +1,4 @@
-import { mdiLink } from '@mdi/js';
+import { mdiOpenInNew } from '@mdi/js';
 import Icon from '@mdi/react';
 import { css } from 'styled-system/css';
 import { flex } from 'styled-system/patterns';
@@ -8,9 +8,9 @@ export function Header() {
     <header className={styles.container}>
       <h1 className={styles.heading}>Demo dnd-kit</h1>
       <p>
-        <a href="https://dndkit.com/" target="_blank">
+        <a href="https://dndkit.com/" target="_blank" className={styles.link}>
           https://dndkit.com/
-          <Icon path={mdiLink} />
+          <Icon path={mdiOpenInNew} size={0.8} />
         </a>
       </p>
     </header>
@@ -26,5 +26,9 @@ const styles = {
   heading: css({
     textStyle: '5xl',
     fontWeight: '700',
+  }),
+  link: flex({
+    gap: 1,
+    alignItems: 'center',
   }),
 };
