@@ -1,10 +1,11 @@
 import { Container, Header } from '~/layouts';
-import { SortableSection } from '~/sections';
+import { DroppableSection, SortableSection } from '~/sections';
 
 export default function App() {
   return (
     <Container>
       <Header />
+      <DroppableSection />
       <SortableSection />
     </Container>
   );
