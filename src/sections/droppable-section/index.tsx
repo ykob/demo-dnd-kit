@@ -1,52 +1,11 @@
 import {
   DndContext,
   DragEndEvent,
-  useDraggable,
-  useDroppable,
 } from '@dnd-kit/core';
-import { CSS } from '@dnd-kit/utilities';
 import { useState } from 'react';
 import { Section } from '~/components';
-
-const Draggable = () => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: 'draggable',
-    data: { type: 'type1' },
-  });
-  const style = {
-    transform: CSS.Transform.toString(transform),
-  };
-
-  return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      Draggable
-    </div>
-  );
-};
-
-type DroppableProps = {
-  dropped: { id: string }[];
-};
-
-const Droppable = ({ dropped }: DroppableProps) => {
-  const { isOver, setNodeRef } = useDroppable({
-    id: 'droppable',
-    data: {
-      accepts: ['type1', 'type2'],
-    },
-  });
-
-  return (
-    <div ref={setNodeRef}>
-      <div>Droppable</div>
-      <div>
-        {dropped.map((item, index) => {
-          return <div key={index}>{item.id}</div>;
-        })}
-      </div>
-    </div>
-  );
-};
+import { DraggableCard } from './draggable-card';
+import { DroppableBlock } from './droppable-block';
 
 export function DroppableSection() {
   const [dropped, setDropped] = useState<{ id: string }[]>([]);
@@ -66,8 +25,8 @@ export function DroppableSection() {
   return (
     <Section heading="Droppable">
       <DndContext onDragEnd={handleDragEnd}>
-        <Droppable dropped={dropped} />
-        <Draggable />
+        <DroppableBlock dropped={dropped} />
+        <DraggableCard />
       </DndContext>
     </Section>
   );
