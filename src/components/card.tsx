@@ -4,7 +4,7 @@ import { Icon } from '@mdi/react';
 import { ComponentProps, forwardRef } from 'react';
 import { css, cva, cx } from 'styled-system/css';
 
-type CardProps = Omit<ComponentProps<'div'>, "children"> & {
+type CardProps = Omit<ComponentProps<'div'>, 'children'> & {
   title: string;
   description?: string;
   activated?: boolean;
@@ -34,13 +34,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function (
         <div className={styles.title}>{title}</div>
         <div className={styles.description}>{description}</div>
       </div>
-      {
-        sortListeners && (
-          <button className={styles.sortButton} {...sortListeners}>
-            <Icon path={mdiDragHorizontalVariant} size={1} />
-          </button>
-        )
-      }
+      <button className={styles.sortButton} {...sortListeners}>
+        <Icon path={mdiDragHorizontalVariant} size={1} />
+      </button>
     </div>
   );
 });
