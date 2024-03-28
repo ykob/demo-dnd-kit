@@ -1,10 +1,9 @@
-import {
-  DndContext,
-  DragEndEvent,
-} from '@dnd-kit/core';
+import { DndContext, DragEndEvent } from '@dnd-kit/core';
 import { useState } from 'react';
+import { css } from 'styled-system/css';
 import { Section } from '~/components';
 import { DraggableCard } from './draggable-card';
+import { DraggableCards } from './draggable-cards';
 import { DroppableBlock } from './droppable-block';
 
 export function DroppableSection() {
@@ -25,9 +24,21 @@ export function DroppableSection() {
   return (
     <Section heading="Droppable">
       <DndContext onDragEnd={handleDragEnd}>
-        <DroppableBlock dropped={dropped} />
-        <DraggableCard />
+        <div className={styles.container}>
+          <DroppableBlock dropped={dropped} />
+          <DraggableCards>
+            <DraggableCard />
+          </DraggableCards>
+        </div>
       </DndContext>
     </Section>
   );
 }
+
+const styles = {
+  container: css({
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
+  }),
+};
