@@ -10,15 +10,9 @@ export function DraggableCard() {
   const style = {
     transform: CSS.Translate.toString(transform),
   };
-  console.log(transform)
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-    >
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
       <Card>Draggable</Card>
     </div>
   );

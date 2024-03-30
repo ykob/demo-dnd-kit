@@ -1,5 +1,7 @@
 import { useDroppable } from '@dnd-kit/core';
 import { css, cva } from 'styled-system/css';
+import { Card } from './card';
+import { DraggableCards } from './draggable-cards';
 
 type DroppableProps = {
   dropped: { id: string }[];
@@ -19,16 +21,27 @@ export function DroppableBlock({ dropped }: DroppableProps) {
       <div ref={setNodeRef} className={styles.items}>
         {dropped.length === 0 ? (
           <div
-            className={styles.dropHere({
+            className={styles.droppableContainer({
               isOver,
+              hasItems: false,
             })}
           >
-            Drop here
+            <div className={styles.dropHere}>Drop here</div>
           </div>
         ) : (
-          dropped.map((item, index) => {
-            return <div key={index}>{item.id}</div>;
-          })
+          <div
+            className={styles.droppableContainer({
+              isOver,
+              hasItems: true,
+            })}
+          >
+            <DraggableCards className={styles.items}>
+              {dropped.map((item, index) => {
+                return <Card key={index}>{item.id}</Card>;
+              })}
+            </DraggableCards>
+            <div className={styles.dropHere}>Drop here</div>
+          </div>
         )}
       </div>
     </div>
@@ -45,32 +58,44 @@ const styles = {
     mb: 4,
     textStyle: 'xl',
   }),
-  dropHere: cva({
+  droppableContainer: cva({
     base: {
-      p: 8,
+      p: 4,
       rounded: 'lg',
-      color: 'lime.500',
       textStyle: 'xl',
-      textAlign: 'center',
       borderWidth: 2,
       borderStyle: 'dashed',
       borderColor: 'lime.500',
       transition: 'background-color 0.2s',
     },
-    variants: {
-      isOver: {
-        true: {
-          bg: 'lime.100',
+    compoundVariants: [
+      {
+        isOver: true,
+        css: {
+          bg: 'lime.200',
         },
-        false: {
+      },
+      {
+        isOver: false,
+        hasItems: false,
+        css: {
           bg: 'transparent',
         },
       },
-    },
+      {
+        isOver: false,
+        hasItems: true,
+        css: {
+          bg: 'lime.100',
+        },
+      },
+    ],
+  }),
+  dropHere: css({
+    color: 'lime.500',
+    textAlign: 'center',
   }),
   items: css({
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 2,
+    mb: 4,
   }),
 };

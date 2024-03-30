@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps } from 'react';
 import { css, cx } from 'styled-system/css';
 
 type CardProps = ComponentProps<'div'>;
@@ -16,6 +16,7 @@ const styles = {
     px: 8,
     py: 6,
     rounded: 'md',
+    color: 'black',
     bg: 'white',
   }),
 };
