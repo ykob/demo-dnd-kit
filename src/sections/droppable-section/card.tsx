@@ -1,23 +1,42 @@
 import { ComponentProps } from 'react';
-import { css, cx } from 'styled-system/css';
+import { cva, cx } from 'styled-system/css';
 
-type CardProps = ComponentProps<'div'>;
+type CardProps = ComponentProps<'div'> & {
+  isDragging: boolean;
+};
 
-export function Card({ children, className, ...props }: CardProps) {
+export function Card({ children, className, isDragging, ...props }: CardProps) {
   return (
-    <div className={cx(styles.container, className)} {...props}>
+    <div
+      className={cx(
+        styles.container({
+          isDragging,
+        }),
+        className,
+      )}
+      {...props}
+    >
       {children}
     </div>
   );
 }
 
 const styles = {
-  container: css({
-    px: 8,
-    py: 6,
-    rounded: 'md',
-    shadow: 'md',
-    color: 'black',
-    bg: 'white',
+  container: cva({
+    base: {
+      px: 8,
+      py: 6,
+      rounded: 'md',
+      shadow: 'md',
+      color: 'black',
+      bg: 'white',
+    },
+    variants: {
+      isDragging: {
+        true: {
+          shadow: 'lg',
+        },
+      },
+    },
   }),
 };
