@@ -16,6 +16,7 @@ const styles = {
     px: 8,
     py: 6,
     rounded: 'md',
+    shadow: 'md',
     color: 'black',
     bg: 'white',
   }),

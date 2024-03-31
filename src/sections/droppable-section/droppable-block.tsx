@@ -65,14 +65,14 @@ const styles = {
       textStyle: 'xl',
       borderWidth: 2,
       borderStyle: 'dashed',
-      borderColor: 'lime.500',
+      borderColor: 'lime.600',
       transition: 'background-color 0.2s',
     },
     compoundVariants: [
       {
         isOver: true,
         css: {
-          bg: 'lime.200',
+          bg: 'lime.300',
         },
       },
       {
@@ -86,13 +86,13 @@ const styles = {
         isOver: false,
         hasItems: true,
         css: {
-          bg: 'lime.100',
+          bg: 'lime.200',
         },
       },
     ],
   }),
   dropHere: css({
-    color: 'lime.500',
+    color: 'lime.600',
     textAlign: 'center',
   }),
   items: css({
