@@ -11,7 +11,7 @@ export function DroppableBlock({ dropped }: DroppableProps) {
   const { isOver, setNodeRef } = useDroppable({
     id: 'droppable',
     data: {
-      accepts: ['type1', 'type2'],
+      accepts: ['draggable-item'],
     },
   });
 
@@ -62,7 +62,6 @@ const styles = {
     base: {
       p: 4,
       rounded: 'lg',
-      textStyle: 'xl',
       borderWidth: 2,
       borderStyle: 'dashed',
       borderColor: 'lime.600',
@@ -93,6 +92,7 @@ const styles = {
   }),
   dropHere: css({
     color: 'lime.600',
+    textStyle: 'xl',
     textAlign: 'center',
   }),
   items: css({

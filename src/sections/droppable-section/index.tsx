@@ -16,7 +16,6 @@ export function DroppableSection() {
       over &&
       over.data.current?.accepts.includes(active.data.current?.type)
     ) {
-      console.log('Dropped draggable into droppable');
       setDropped((items) => [...items, { id: active.data.current?.type }]);
     }
   }
@@ -27,7 +26,9 @@ export function DroppableSection() {
         <div className={styles.container}>
           <DroppableBlock dropped={dropped} />
           <DraggableCards>
-            <DraggableCard />
+            <DraggableCard id="draggable-item-1" type="draggable-item" />
+            <DraggableCard id="draggable-item-2" type="draggable-item" />
+            <DraggableCard id="draggable-item-3" type="draggable-item" />
           </DraggableCards>
         </div>
       </DndContext>
