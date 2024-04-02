@@ -1,5 +1,7 @@
+import { mdiDrag } from '@mdi/js';
+import Icon from '@mdi/react';
 import { ComponentProps } from 'react';
-import { cva, cx } from 'styled-system/css';
+import { css, cva, cx } from 'styled-system/css';
 
 type CardProps = ComponentProps<'div'> & {
   isDragging?: boolean;
@@ -21,7 +23,8 @@ export function Card({
       )}
       {...props}
     >
-      {children}
+      <Icon className={styles.icon} path={mdiDrag} size={1} />
+      <div>{children}</div>
     </div>
   );
 }
@@ -29,19 +32,30 @@ export function Card({
 const styles = {
   container: cva({
     base: {
-      px: 8,
+      display: 'flex',
+      alignItems: 'center',
+      gap: 2,
+      pr: 8,
+      pl: 4,
       py: 6,
       rounded: 'md',
       shadow: 'md',
+      cursor: 'grab',
       color: 'black',
+      textStyle: 'md',
+      fontWeight: '500',
       bg: 'white',
     },
     variants: {
       isDragging: {
         true: {
+          cursor: 'grabbing',
           shadow: 'lg',
         },
       },
     },
+  }),
+  icon: css({
+    flexShrink: 0,
   }),
 };
