@@ -2,10 +2,15 @@ import { ComponentProps } from 'react';
 import { cva, cx } from 'styled-system/css';
 
 type CardProps = ComponentProps<'div'> & {
-  isDragging: boolean;
+  isDragging?: boolean;
 };
 
-export function Card({ children, className, isDragging, ...props }: CardProps) {
+export function Card({
+  children,
+  className,
+  isDragging = false,
+  ...props
+}: CardProps) {
   return (
     <div
       className={cx(
