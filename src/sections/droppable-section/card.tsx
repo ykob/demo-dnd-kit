@@ -4,12 +4,14 @@ import { ComponentProps } from 'react';
 import { css, cva, cx } from 'styled-system/css';
 
 type CardProps = ComponentProps<'div'> & {
+  draggable?: boolean;
   isDragging?: boolean;
 };
 
 export function Card({
   children,
   className,
+  draggable = false,
   isDragging = false,
   ...props
 }: CardProps) {
@@ -17,13 +19,14 @@ export function Card({
     <div
       className={cx(
         styles.container({
+          draggable,
           isDragging,
         }),
         className,
       )}
       {...props}
     >
-      <Icon className={styles.icon} path={mdiDrag} size={1} />
+      {draggable && <Icon className={styles.icon} path={mdiDrag} size={1} />}
       <div>{children}</div>
     </div>
   );
@@ -36,17 +39,24 @@ const styles = {
       alignItems: 'center',
       gap: 2,
       pr: 8,
-      pl: 4,
       py: 6,
       rounded: 'md',
       shadow: 'md',
-      cursor: 'grab',
       color: 'black',
       textStyle: 'md',
       fontWeight: '500',
       bg: 'white',
     },
     variants: {
+      draggable: {
+        true: {
+          cursor: 'grab',
+          pl: 4,
+        },
+        false: {
+          pl: 8,
+        },
+      },
       isDragging: {
         true: {
           cursor: 'grabbing',

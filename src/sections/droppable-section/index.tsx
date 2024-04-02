@@ -16,7 +16,7 @@ export function DroppableSection() {
       over &&
       over.data.current?.accepts.includes(active.data.current?.type)
     ) {
-      setDropped((items) => [...items, { id: active.data.current?.type }]);
+      setDropped((items) => [...items, { id: active.data.current?.id }]);
     }
   }
 

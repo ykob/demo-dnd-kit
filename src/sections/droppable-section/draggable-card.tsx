@@ -6,7 +6,7 @@ export function DraggableCard({ id, type }: { id: string; type: string }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({
       id,
-      data: { type },
+      data: { id, type },
     });
   const style = {
     transform: CSS.Translate.toString(transform),
@@ -14,7 +14,9 @@ export function DraggableCard({ id, type }: { id: string; type: string }) {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <Card isDragging={isDragging}>{id}</Card>
+      <Card isDragging={isDragging} draggable>
+        {id}
+      </Card>
     </div>
   );
 }
