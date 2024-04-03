@@ -8,6 +8,11 @@ import { DroppableBlock } from './droppable-block';
 
 export function DroppableSection() {
   const [dropped, setDropped] = useState<{ id: string }[]>([]);
+  const [undropped, setUndropped] = useState<{ id: string }[]>([
+    { id: 'draggable-item-1' },
+    { id: 'draggable-item-2' },
+    { id: 'draggable-item-3' },
+  ]);
 
   function handleDragEnd(e: DragEndEvent) {
     const { active, over } = e;
@@ -17,6 +22,7 @@ export function DroppableSection() {
       over.data.current?.accepts.includes(active.data.current?.type)
     ) {
       setDropped((items) => [...items, { id: active.data.current?.id }]);
+      setUndropped((items) => items.filter((item) => item.id !== active.data.current?.id));
     }
   }
 
@@ -24,11 +30,13 @@ export function DroppableSection() {
     <Section heading="Droppable">
       <DndContext onDragEnd={handleDragEnd}>
         <div className={styles.container}>
-          <DroppableBlock dropped={dropped} />
+          <DroppableBlock dropped={dropped} done={undropped.length === 0} />
           <DraggableCards>
-            <DraggableCard id="draggable-item-1" type="draggable-item" />
-            <DraggableCard id="draggable-item-2" type="draggable-item" />
-            <DraggableCard id="draggable-item-3" type="draggable-item" />
+            {
+              undropped.map((item) => (
+                <DraggableCard key={item.id} id={item.id} type="draggable-item" />
+              ))
+            }
           </DraggableCards>
         </div>
       </DndContext>

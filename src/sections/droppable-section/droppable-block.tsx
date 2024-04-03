@@ -5,9 +5,10 @@ import { DraggableCards } from './draggable-cards';
 
 type DroppableProps = {
   dropped: { id: string }[];
+  done: boolean;
 };
 
-export function DroppableBlock({ dropped }: DroppableProps) {
+export function DroppableBlock({ dropped, done = false }: DroppableProps) {
   const { isOver, setNodeRef } = useDroppable({
     id: 'droppable',
     data: {
@@ -18,30 +19,24 @@ export function DroppableBlock({ dropped }: DroppableProps) {
   return (
     <div className={styles.container}>
       <div className={styles.heading}>Droppable</div>
-      <div ref={setNodeRef} className={styles.items}>
+      <div
+        className={styles.droppableContainer({
+          isOver,
+          hasItems: dropped.length > 0,
+        })}
+        ref={setNodeRef}
+      >
         {dropped.length === 0 ? (
-          <div
-            className={styles.droppableContainer({
-              isOver,
-              hasItems: false,
-            })}
-          >
-            <div className={styles.dropHere}>Drop here</div>
-          </div>
+          <div className={styles.dropHere}>Drop here</div>
         ) : (
-          <div
-            className={styles.droppableContainer({
-              isOver,
-              hasItems: true,
-            })}
-          >
-            <DraggableCards className={styles.items}>
+          <>
+            <DraggableCards className={styles.cards}>
               {dropped.map((item, index) => {
                 return <Card key={index}>{item.id}</Card>;
               })}
             </DraggableCards>
-            <div className={styles.dropHere}>Drop here</div>
-          </div>
+            {!done && <div className={styles.dropHere}>Drop here</div>}
+          </>
         )}
       </div>
     </div>
@@ -60,6 +55,10 @@ const styles = {
   }),
   droppableContainer: cva({
     base: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: 4,
       p: 4,
       rounded: 'lg',
       borderWidth: 2,
@@ -90,12 +89,11 @@ const styles = {
       },
     ],
   }),
+  cards: css({
+    width: '100%',
+  }),
   dropHere: css({
     color: 'lime.600',
     textStyle: 'xl',
-    textAlign: 'center',
-  }),
-  items: css({
-    mb: 4,
   }),
 };
