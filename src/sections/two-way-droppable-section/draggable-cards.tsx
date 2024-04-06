@@ -19,6 +19,6 @@ const styles = {
   container: css({
     display: 'grid',
     gap: 4,
-    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridTemplateColumns: 'repeat(1, 1fr)',
   }),
 };

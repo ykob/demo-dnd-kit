@@ -2,7 +2,9 @@ import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { Card } from './card';
 
-export function DraggableCard({ id, type }: { id: string; type: string }) {
+type DraggableCardProps = { id: string; type: string };
+
+export function DraggableCard({ id, type }: DraggableCardProps) {
   const { attributes, listeners, setNodeRef, transform, isDragging } =
     useDraggable({
       id,
