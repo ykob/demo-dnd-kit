@@ -19,7 +19,6 @@ export function TwoWayDroppableSection() {
       over &&
       over.data.current?.accepts.includes(active.data.current?.type)
     ) {
-      console.log(active);
       if (over.id === 'droppable-1') {
         setDropped1((items) => [...items, { id: active.data.current?.id }]);
         setDropped2((items) =>
@@ -39,8 +38,16 @@ export function TwoWayDroppableSection() {
     <Section heading="Two Way Droppable">
       <DndContext onDragEnd={handleDragEnd}>
         <div className={styles.container}>
-          <DroppableBlock id="droppable-1" dropped={dropped1} />
-          <DroppableBlock id="droppable-2" dropped={dropped2} />
+          <DroppableBlock
+            id="droppable-1"
+            accepts={['droppable-2']}
+            dropped={dropped1}
+          />
+          <DroppableBlock
+            id="droppable-2"
+            accepts={['droppable-1']}
+            dropped={dropped2}
+          />
         </div>
       </DndContext>
     </Section>

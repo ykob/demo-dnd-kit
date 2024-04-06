@@ -5,14 +5,15 @@ import { DraggableCards } from './draggable-cards';
 
 type DroppableProps = {
   id: string;
+  accepts: string[];
   dropped: { id: string }[];
 };
 
-export function DroppableBlock({ id, dropped }: DroppableProps) {
+export function DroppableBlock({ id, accepts, dropped }: DroppableProps) {
   const { isOver, setNodeRef } = useDroppable({
     id,
     data: {
-      accepts: ['draggable-item'],
+      accepts,
     },
   });
 
@@ -32,13 +33,7 @@ export function DroppableBlock({ id, dropped }: DroppableProps) {
           <>
             <DraggableCards className={styles.cards}>
               {dropped.map((item) => {
-                return (
-                  <DraggableCard
-                    key={item.id}
-                    id={item.id}
-                    type="draggable-item"
-                  />
-                );
+                return <DraggableCard key={item.id} id={item.id} type={id} />;
               })}
             </DraggableCards>
             <div className={styles.dropHere}>Drop here</div>
