@@ -1,8 +1,8 @@
 import eslint from '@eslint/js';
-import tseslint from '@typescript-eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import hooksPlugin from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import tseslint from 'typescript-eslint';
 
 export default [
   eslint.configs.recommended,
@@ -12,9 +12,6 @@ export default [
     ignores: ['dist', 'styled-system', '.eslintrc.cjs'],
   },
   {
-    languageOptions: {
-      parser: '@typescript-eslint/parser',
-    },
     plugins: {
       'react-refresh': reactRefresh,
       'react-hooks': hooksPlugin,
