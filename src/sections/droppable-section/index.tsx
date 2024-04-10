@@ -22,7 +22,9 @@ export function DroppableSection() {
       over.data.current?.accepts.includes(active.data.current?.type)
     ) {
       setDropped((items) => [...items, { id: active.data.current?.id }]);
-      setUndropped((items) => items.filter((item) => item.id !== active.data.current?.id));
+      setUndropped((items) =>
+        items.filter((item) => item.id !== active.data.current?.id),
+      );
     }
   }
 
@@ -32,11 +34,9 @@ export function DroppableSection() {
         <div className={styles.container}>
           <DroppableBlock dropped={dropped} done={undropped.length === 0} />
           <DraggableCards>
-            {
-              undropped.map((item) => (
-                <DraggableCard key={item.id} id={item.id} type="draggable-item" />
-              ))
-            }
+            {undropped.map((item) => (
+              <DraggableCard key={item.id} id={item.id} type="draggable-item" />
+            ))}
           </DraggableCards>
         </div>
       </DndContext>
