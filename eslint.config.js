@@ -12,11 +12,15 @@ export default [
     ignores: ['dist', 'styled-system'],
   },
   {
+    languageOptions: {
+      parser: tseslint.parser
+    },
     plugins: {
       'react-refresh': reactRefresh,
       'react-hooks': hooksPlugin,
     },
     rules: {
+      ...hooksPlugin.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
