@@ -9,7 +9,7 @@ export default [
   ...tseslint.configs.recommended,
   eslintConfigPrettier,
   {
-    ignores: ['dist', 'styled-system', '.eslintrc.cjs'],
+    ignores: ['dist', 'styled-system'],
   },
   {
     plugins: {
